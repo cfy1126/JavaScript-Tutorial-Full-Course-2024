@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coin Flip</title>
+  </head>
+  <body>
+    <button onclick="playGame('heads')">heads</button>
+    <button onclick="playGame('tails')">tails</button>
+    <script>
+      const score = JSON.parse(localStorage.getItem('score')) || {
+        wins: 0,
+        losses: 0,
+      };
+      function playGame(guess) {
+        const coin = Math.random();
+        let result = '';
+        if (coin >= 0 && coin < 0.5) {
+          result = 'heads';
+        } else if (coin >= 0.5 && coin < 1) {
+          result = 'tails';
+        }
+
+        if (guess === result) {
+          console.log('You guessed correctly', result);
+          score.wins++;
+        } else {
+          console.log('You guessed incorrectly', result);
+          score.losses++;
+        }
+        localStorage.setItem('score', JSON.stringify(score));
+        console.log(score);
+      }
+    </script>
+  </body>
+</html>
