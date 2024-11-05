@@ -27,18 +27,16 @@
     >
       Scissors
     </button>
-    <div class="js-score">
-      <!-- <p>You win.</p>
-      <p>You paper - rock Computer</p>
-      <p>Wins: 1, Losses: 0, Ties: 0</p> -->
-    </div>
+    <p class="js-result"></p>
+    <p class="js-moves"></p>
+    <p class="js-score"></p>
     <button
       onclick="
       localStorage.removeItem('statistics');
       statistics.wins = 0;
       statistics.losses = 0;
       statistics.ties = 0;
-      document.querySelector('.js-score').innerHTML = `<p>Wins: 0, Losses: 0, Ties: 0</p>`
+      updateScoreElement();
         "
     >
       Rest Score
@@ -50,9 +48,7 @@
         ties: 0,
       };
 
-      document.querySelector('.js-score').innerHTML = `
-        <p>Wins: ${statistics.wins}, Losses: ${statistics.losses}, Ties: ${statistics.ties}</p>
-      `;
+      updateScoreElement();
 
       function playGame(pickMove) {
         const computerMove = pickComputerMove();
@@ -94,14 +90,17 @@
 
         localStorage.setItem('statistics', JSON.stringify(statistics));
 
+        updateScoreElement();
+        document.querySelector('.js-result').innerHTML = result;
+        document.querySelector(
+          '.js-moves'
+        ).innerHTML = `You: ${pickMove}, Computer: ${computerMove}`;
+      }
+
+      function updateScoreElement() {
         document.querySelector('.js-score').innerHTML = `
           <p>Wins: ${statistics.wins}, Losses: ${statistics.losses}, Ties: ${statistics.ties}</p>
         `;
-
-        //         alert(
-        //           `You picked ${pickMove}, Computer picked ${computerMove}. ${result}
-        // Wins: ${statistics.wins}, Losses: ${statistics.losses}, Ties: ${statistics.ties}`
-        //         );
       }
 
       function pickComputerMove() {
