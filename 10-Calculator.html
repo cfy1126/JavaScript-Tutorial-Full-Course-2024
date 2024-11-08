@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #000;
+      }
+      .calculation {
+        color: white;
+        font-size: 45px;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+      .calculator-button {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        margin-right: 5px;
+        color: white;
+      }
+      .gray-button {
+        background-color: #333333;
+      }
+      .orange-button {
+        background-color: orange;
+      }
+      .clear-button {
+        font-size: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="js-calculate-content calculation"></p>
+    <p>
+      <button
+        onclick="
+updateCalculation('1');
+      "
+        class="calculator-button gray-button"
+      >
+        1
+      </button>
+      <button
+        onclick="
+updateCalculation('2');
+    "
+        class="calculator-button gray-button"
+      >
+        2
+      </button>
+      <button
+        onclick="
+updateCalculation('3');
+    "
+        class="calculator-button gray-button"
+      >
+        3
+      </button>
+      <button
+        onclick="
+updateCalculation('+');
+    "
+        class="calculator-button orange-button"
+      >
+        +
+      </button>
+    </p>
+    <p>
+      <button
+        onclick="
+updateCalculation('4');
+      "
+        class="calculator-button gray-button"
+      >
+        4
+      </button>
+      <button
+        onclick="
+updateCalculation('5');
+    "
+        class="calculator-button gray-button"
+      >
+        5
+      </button>
+      <button
+        onclick="
+updateCalculation('6');
+    "
+        class="calculator-button gray-button"
+      >
+        6
+      </button>
+      <button
+        onclick="
+updateCalculation('-');
+    "
+        class="calculator-button orange-button"
+      >
+        -
+      </button>
+    </p>
+    <p>
+      <button
+        onclick="
+updateCalculation('7');
+      "
+        class="calculator-button gray-button"
+      >
+        7
+      </button>
+      <button
+        onclick="
+updateCalculation('8');
+    "
+        class="calculator-button gray-button"
+      >
+        8
+      </button>
+      <button
+        onclick="
+updateCalculation('9');
+    "
+        class="calculator-button gray-button"
+      >
+        9
+      </button>
+      <button
+        onclick="
+updateCalculation('*');
+    "
+        class="calculator-button orange-button"
+      >
+        *
+      </button>
+    </p>
+    <p>
+      <button
+        onclick="
+updateCalculation('0');
+        "
+        class="calculator-button gray-button"
+      >
+        0
+      </button>
+      <button
+        onclick="
+updateCalculation('.');
+        "
+        class="calculator-button gray-button"
+      >
+        .
+      </button>
+      <button
+        onclick="
+updateCalculation('=');
+    "
+        class="calculator-button gray-button"
+      >
+        =
+      </button>
+      <button
+        onclick="
+updateCalculation('/');
+        "
+        class="calculator-button orange-button"
+      >
+        /
+      </button>
+    </p>
+    <button
+      class="calculator-button gray-button clear-button"
+      onclick="
+clearCalculation();
+    "
+    >
+      Clear
+    </button>
+
+    <script>
+      let calculation = localStorage.getItem('calculation') || '';
+      showCalculateResult();
+      function updateCalculation(operator) {
+        if (operator === '=') {
+          calculation = eval(calculation);
+          localStorage.setItem('calculation', calculation);
+        } else {
+          calculation += operator;
+        }
+        showCalculateResult();
+      }
+
+      function showCalculateResult() {
+        document.querySelector('.js-calculate-content').innerHTML = calculation;
+      }
+
+      function clearCalculation() {
+        document.querySelector('.js-calculate-content').innerHTML = '';
+        calculation = '';
+        localStorage.removeItem('calculation');
+      }
+    </script>
+  </body>
+</html>
