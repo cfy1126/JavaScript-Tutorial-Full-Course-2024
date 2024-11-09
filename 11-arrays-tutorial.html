@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> </title>
+  </head>
+  <body>
+    <script>
+      /*
+      for(let i=0; i<=10; i++){
+        if(i % 2 === 0){
+          console.log(i);
+        }
+      }
+
+      for(let i=5; i>=0; i--){
+        console.log(i);
+      }
+      
+      
+      let num = 0;
+      while(num <=10){
+        if(num % 2 === 0){
+          console.log(num);
+        }
+        num++;
+      }
+
+      let num2 = 5;
+      while(num2 >= 0){
+        console.log(num2);
+        num2--;
+      }
+
+      function addOne(array) {
+        let newArray = [];
+        for (let i = 0; i < array.length; i++) {
+          newArray[i] = array[i] + 1;
+        }
+        return newArray;
+      }
+
+      function addNum(array, num){
+        for(let i=0; i<array.length; i++){
+          array[i] += num;
+        }
+        return array;
+      }
+      
+      function addArrays(arry1,arry2){
+        let newArray = [];
+        for(let i=0; i<arry1.length; i++){
+          newArray[i] = arry1[i] + arry2[i]
+        }
+        return newArray;
+      }
+
+      function countPositive(nums){
+        let count = 0;
+        for(let i=0; i<nums.length; i++){
+          if(nums[i]>0){
+            count++;
+          }
+        }
+        return count;
+      }
+
+      function minMax(nums) {
+        let obj = nums.length
+          ? {
+              min: nums[0],
+              max: nums[0],
+            }
+          : {
+              min: null,
+              max: null,
+            };
+
+        if (nums.length) {
+          return;
+        }
+
+        for (let i = 0; i < nums.length; i++) {
+          const num = nums[i];
+          console.log(num);
+
+          if (num < obj.min) {
+            obj.min = num;
+          }
+          if (num > obj.max) {
+            obj.max = num;
+          }
+        }
+
+        return obj;
+      }
+      */
+
+      function countWords(words){
+        const obj = {};
+        for(let i = 0; i < words.length; i++){
+          const word = words[i];
+          obj[word] = obj[word] ? obj[word] + 1 : 1;
+        }
+        return obj;
+      }
+
+      console.log(countWords(['apple','grape','apple','apple']));
+    </script>
+  </body>
+</html>
