@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Advanced Functions</title>
+  </head>
+  <body>
+    <script>
+      /*
+      function greet(){
+        console.log('hello');
+        
+      }
+      greet();  
+      
+      const num = 2;
+
+      const function1 = function (){
+        console.log('hello');
+      }
+
+      console.log(function1);
+      console.log(typeof function1);
+      function1();
+
+      const object1 = {
+        num: 2,
+        fun: function(){
+          console.log('hello3');
+        }
+      }
+      object1.fun();
+
+      function display(param){
+        console.log(param);
+      }
+      display(2);
+
+      function run(param){
+        param();
+      }
+      run(function(){
+        console.log('hello4')
+      })
+
+      setTimeout(function(){
+        console.log('hello');
+        console.log('hello2');
+      }, 3000);
+
+      console.log('next line');
+
+      setInterval(function(){
+        console.log('interval')
+      }, 3000)
+
+      console.log('next line2');
+      */
+
+      [
+        'make dinner',
+        'wash dishes',
+        'watch youtube'
+      ].forEach(function(value,index){
+        if(value === 'wash dishes'){
+          return;
+        }
+        console.log(index + ': ' + value);
+      })
+      </script>
+  </body>
+</html>
