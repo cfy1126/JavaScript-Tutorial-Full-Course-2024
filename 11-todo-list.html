@@ -13,6 +13,7 @@
     <br />
     <p>Todo List Practive 2</p>
     <input type="text" class="js-name-input-2" />
+    <input type="date">
     <button onclick="addTodo2()">Add</button>
     <div class="todo-list"></div>
     <script>
@@ -39,7 +40,14 @@
         const todoListElement = document.querySelector('.todo-list');
         let todoListHTML = '';
         for(let i = 0; i < todoList.length; i++){
-          let todoHTML = `<p>${todoList[i]}</p>`;
+          let todoHTML = `
+          <p>
+            ${todoList[i]}
+            <button onclick="
+              todoList.splice(${i}, 1);
+              renderTodoList();
+            ">Delete</button>
+          </p>`;
           todoListHTML += todoHTML;
         }
         todoListElement.innerHTML = todoListHTML;
