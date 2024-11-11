@@ -98,7 +98,7 @@
       function renderTodoList() {
         const todoListElement = document.querySelector('.todo-list');
         let todoListHTML = '';
-        todoList.forEach(function(todoObject,index){
+        todoList.forEach((todoObject,index)=>{
           const { name,dueDate } = todoObject;
           let todoHTML = `
           

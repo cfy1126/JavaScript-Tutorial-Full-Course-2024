@@ -77,11 +77,12 @@ function pickComputerMove() {
 
 let isAutoPlay = false;
 let intervalId;
+
 function autoPlayGame() {
   const autoPalyElement = document.querySelector('.auto-play-button');
   if(autoPalyElement.innerText === 'Auto Play' && !isAutoPlay){
     autoPalyElement.innerHTML = 'Stop Play';
-    intervalId = setInterval(function(){
+    intervalId = setInterval(()=>{
       let playerMove = pickComputerMove();
       playGame(playerMove)
       isAutoPlay = true;
