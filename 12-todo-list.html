@@ -7,7 +7,8 @@
         font-family: 'Arial';
       }
 
-      .todo-list,.todo-input-grid {
+      .todo-list,
+      .todo-input-grid {
         display: grid;
         grid-template-columns: 200px 150px 100px;
         column-gap: 10px;
@@ -15,47 +16,46 @@
         align-items: center;
       }
 
-      .todo-input-grid{
+      .todo-input-grid {
         margin-bottom: 10px;
         align-items: stretch;
       }
 
-      .name-input,.due-date-input{
+      .name-input,
+      .due-date-input {
         font-size: 15px;
         padding: 6px;
       }
 
-      .add-todo-button,.delete-todo-button{
+      .add-todo-button,
+      .delete-todo-button {
         font-size: 15px;
         cursor: pointer;
         color: white;
         border: none;
       }
-      
-      .add-todo-button{
+
+      .add-todo-button {
         padding: 6px;
         background-color: green;
       }
 
-      .delete-todo-button{
+      .delete-todo-button {
         padding: 10px;
         background: darkred;
       }
     </style>
   </head>
   <body>
-    <p>Todo List Practice 1</p>
-    <input type="text" placeholder="Todo name" class="js-name-input" />
-    <button class="js-add" onclick="addTodo()">Add</button>
-
-    <br />
-    <hr />
-    <br />
     <p>Todo List Practive 2</p>
     <div class="todo-input-grid">
-      <input type="text" class="js-name-input-2 name-input" placeholder="Todo name"/>
+      <input
+        type="text"
+        class="js-name-input-2 name-input"
+        placeholder="Todo name"
+      />
       <input type="date" class="js-due-data due-date-input" />
-      <button onclick="addTodo2()" class="add-todo-button">Add</button>
+      <button class="add-todo-button">Add</button>
     </div>
     <div class="todo-list todo-grid"></div>
     <script>
@@ -73,13 +73,6 @@
       renderTodoList();
 
       function addTodo() {
-        const inputElement = document.querySelector('.js-name-input');
-        const todoText = inputElement.value;
-        todoList.push(todoText);
-        inputElement.value = '';
-        console.log(todoList);
-      }
-      function addTodo2() {
         const inputElement = document.querySelector('.js-name-input-2');
         const dueDateElement = document.querySelector('.js-due-data');
         const name = inputElement.value;
@@ -98,27 +91,37 @@
       function renderTodoList() {
         const todoListElement = document.querySelector('.todo-list');
         let todoListHTML = '';
-        todoList.forEach((todoObject,index)=>{
-          const { name,dueDate } = todoObject;
+        todoList.forEach((todoObject, index) => {
+          const { name, dueDate } = todoObject;
           let todoHTML = `
           
           <div>${name}</div>
           <div>${dueDate}</div>
-          <button onclick="
-            todoList.splice(${index}, 1);
-            saveToStorage();
-            renderTodoList();
-          "
+          <button 
+          data-index="${index}"
           class="delete-todo-button">Delete</button>
         `;
-        todoListHTML += todoHTML;
+          todoListHTML += todoHTML;
         });
         todoListElement.innerHTML = todoListHTML;
+
+        document
+          .querySelectorAll('.delete-todo-button')
+          .forEach((button, index) => {
+            button.addEventListener('click', () => {
+              todoList.splice(index, 1);
+              saveToStorage();
+              renderTodoList();
+            });
+          });
       }
 
-      function saveToStorage(){
+      function saveToStorage() {
         localStorage.setItem('todoList', JSON.stringify(todoList));
       }
+
+      const addTodoButton = document.querySelector('.add-todo-button');
+      addTodoButton.addEventListener('click', addTodo);
     </script>
   </body>
 </html>

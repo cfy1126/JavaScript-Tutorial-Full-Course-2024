@@ -8,8 +8,14 @@
     <script>
       const buttonElement = document.querySelector('.js-button');
 
-      buttonElement.addEventListener('click',()=>{
+      const eventListener = ()=>{
         console.log('clicked');
+      }
+      buttonElement.addEventListener('click',eventListener);
+      buttonElement.removeEventListener('click',eventListener)
+
+      buttonElement.addEventListener('click',()=>{
+        console.log('clicked2');
       })
       /*
       function greet(){
@@ -105,7 +111,32 @@
 
         }
       }
+
+      const filterArr = [1,-2,5].filter((value,index)=>{
+        return value >= 0;
+      });
+      console.log(filterArr);
+
+
+      const mapArr = [1,1,3].map((value, index)=>{
+        return value * 2;
+      })
+
+      console.log(mapArr);
       */
+
+      function funtion1(fun){
+        let i = 10;
+        fun(i);
+      }
+      function funtion2(i){
+        setTimeout(()=>{
+          console.log(i);
+        },3000)
+      }
+
+      funtion1(funtion2);
+      console.log('next line');
       </script>
   </body>
 </html>

@@ -93,3 +93,40 @@ function autoPlayGame() {
     isAutoPlay = false;
   }
 }
+
+const moveRockElement = document.querySelector('.move-rock-button');
+const movePaperElement = document.querySelector('.move-paper-button');
+const moveScissorsElement = document.querySelector('.move-scissors-button');
+const resetScoreElement = document.querySelector('.reset-score-button');
+const autoPlayElement = document.querySelector('.auto-play-button');
+
+moveRockElement.addEventListener('click',()=>{
+  playGame('rock');
+});
+
+movePaperElement.addEventListener('click',()=>{
+  playGame('paper');
+});
+moveScissorsElement.addEventListener('click',()=>{
+  playGame('scissors');
+})
+resetScoreElement.addEventListener('click',()=>{
+  localStorage.removeItem('statistics');
+  statistics.wins = 0;
+  statistics.losses = 0;
+  statistics.ties = 0;
+  updateScoreElement();
+});
+autoPlayElement.addEventListener('click',autoPlayGame);
+
+document.body.addEventListener('keydown',(event)=>{
+  if(event.key === 'r'){
+    playGame('rock');
+  }else if(event.key === 'p'){
+    playGame('paper');
+  }else if(event.key === 's'){
+    playGame('scissors');
+  }
+})
+
+
